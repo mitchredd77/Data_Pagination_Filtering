@@ -15,11 +15,13 @@ searchInput.addEventListener("keyup", () => {
    const searchString = searchInput.value.toLowerCase();
    for (i = 0; i < data.length; i++) {
      const student_last = data[i].name.last.toLowerCase();
-     if (student_last.includes(searchString)) {
+     const student_first = data[i].name.first.toLowerCase();
+     if (student_last.includes(searchString) || student_first.includes(searchString)) {
        newData.push(data[i]);
      }
      }
      if (newData.length > 0) {
+      console.log(newData.length);
        addPagination(newData);
        showPage(newData, 1);
      } else {
@@ -28,6 +30,8 @@ searchInput.addEventListener("keyup", () => {
        paginationList.innerHTML = "";
      }
  });
+
+ //Displays page with correct number of students on page
 function showPage(list, page) {
    const startStudent = (page * studentsPerPage) - studentsPerPage;
    const lastStudent = (page * studentsPerPage) - 1;
@@ -50,20 +54,18 @@ function showPage(list, page) {
    }
  }
 
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
+// Creates buttons for each page
 function addPagination(list) {
   const buttons = Math.ceil(list.length / studentsPerPage);
+  paginationList.innerHTML = '';
   for (let i=1; i <= buttons; i++) {
     const buttonTemplate = `<li>
     <button>${i}</button>
   </li>
   `;
   paginationList.insertAdjacentHTML("beforeend", buttonTemplate);
-  paginationList.querySelector("button").classList.add("active");
 }
+paginationList.querySelector("button").classList.add("active");
 }
 
 //Adding Listener for navigation buttons
