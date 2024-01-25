@@ -9,6 +9,7 @@ const paginationList = document.querySelector('.link-list')
 
 const studentsPerPage = 9;
 
+// add search bar to page and select the search input
 addSearchBar();
 const searchInput = document.querySelector('#search')
 //Search function for students
@@ -23,9 +24,6 @@ searchInput.addEventListener("keyup", () => {
      
      if (student_last.includes(searchString) || student_first.includes(searchString)) {
        newData.push(data[i]);
-       console.log(student_first);
-       console.log(student_last);
-       console.log(newData);
      }
      }
      if (newData.length > 0) {
@@ -38,7 +36,7 @@ searchInput.addEventListener("keyup", () => {
      }
  });
 
-
+// Function to add search bar to page
 function addSearchBar() {
    const searchBar = `<label for="search" class="student-search">
                    <span>Search by name</span>
