@@ -12,6 +12,7 @@ const studentsPerPage = 9;
 // add search bar to page and select the search input
 addSearchBar();
 const searchInput = document.querySelector('#search')
+
 //Search function for students
 searchInput.addEventListener("keyup", () => {
    const newData = [];
@@ -70,9 +71,7 @@ paginationList.addEventListener("click", (e) => {
  });
 }
 
-
-
- //Displays page and dynamically adds students to each page
+//Displays page and dynamically adds students to each page
  function showPage(list, page) {
    const startStudent = (page * studentsPerPage) - studentsPerPage;
    const lastStudent = (page * studentsPerPage) - 1;
