@@ -5,10 +5,12 @@ https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
 */
 const studentContainer = document.querySelector('.student-list')
 const paginationList = document.querySelector('.link-list')
-const searchInput = document.querySelector('#search')
+
 
 const studentsPerPage = 9;
 
+addSearchBar();
+const searchInput = document.querySelector('#search')
 //Search function for students
 searchInput.addEventListener("keyup", () => {
    const newData = [];
@@ -37,7 +39,15 @@ searchInput.addEventListener("keyup", () => {
  });
 
 
-
+function addSearchBar() {
+   const searchBar = `<label for="search" class="student-search">
+                   <span>Search by name</span>
+                   <input id="search" placeholder="Search by name...">
+                   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+                   </label>`
+   const h2Element = document.querySelector(".header h2");
+   h2Element.insertAdjacentHTML('beforeend', searchBar);
+}
 // Creates buttons for each page
 function addPagination(list) {
   const buttons = Math.ceil(list.length / studentsPerPage);
@@ -76,7 +86,7 @@ paginationList.addEventListener("click", (e) => {
        <div class="student-details">
          <img class="avatar" src=${student.picture.thumbnail} alt="Profile Picture">
          <h3>${student.name.first} ${student.name.last}</h3>
-         <span class="email">ethel.dean@example.com</span>
+         <span class="email">${student.email}</span>
        </div>
        <div class="joined-details">
          <span class="date">${student.registered.date}</span>
